@@ -3,57 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free online image compression tool - Optimize your images with adjustable compression levels">
-    <meta name="keywords" content="image compression, optimize images, photo compressor, web optimization">
-    <meta name="author" content="Image Compression Tool">
+    <meta name="description" content="Free online image compression tool - Reduce image sizes with customizable compression levels">
+    <meta name="keywords" content="image compression, online compressor, reduce image size, optimize images, free tool">
+    <meta name="author" content="Fitpros">
     <meta name="robots" content="index, follow">
     <title>Image Compressor Tool - Optimize Images Online</title>
-    
+    <link rel="canonical" href="https://fitpros.github.io/image-copressor/image-compressor.html">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; background: #f0f2f5; color: #333; }
+        body { font-family: 'Poppins', sans-serif; background: #f4f7fa; color: #333; line-height: 1.6; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        header { background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); padding: 15px 0; position: sticky; top: 0; z-index: 100; }
+        header { background: #fff; padding: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
         .header-content { display: flex; align-items: center; justify-content: space-between; }
-        .logo { display: flex; align-items: center; gap: 10px; }
-        .logo img { width: 40px; height: 40px; }
-        .logo a { text-decoration: none; color: #2c3e50; }
-        .logo a:hover { color: #3498db; }
-        .logo h1 { font-size: 24px; }
-        nav { display: flex; gap: 15px; }
-        .nav-btn { padding: 8px 20px; border: none; border-radius: 25px; background: #3498db; color: white; text-decoration: none; transition: background 0.3s; }
-        .nav-btn:hover { background: #2980b9; }
-        .tool-wrapper { background: white; padding: 30px; border-radius: 10px; margin: 30px 0; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .input-section { margin-bottom: 25px; }
-        #compressionLevel { width: 100%; margin: 15px 0; accent-color: #3498db; }
-        .preview-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 25px 0; }
+        .logo { display: flex; align-items: center; gap: 15px; }
+        .logo img { width: 50px; height: 50px; }
+        .logo h1 { font-size: 28px; color: #2c3e50; }
+        nav { display: flex; gap: 20px; }
+        .nav-link { padding: 10px 20px; background: #3498db; color: white; text-decoration: none; border-radius: 25px; transition: all 0.3s; }
+        .nav-link:hover { background: #2980b9; transform: translateY(-2px); }
+        .tool-section { background: #fff; padding: 40px; margin: 40px 0; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .tool-section h2 { font-size: 32px; text-align: center; margin-bottom: 30px; color: #2c3e50; }
+        .input-area { margin-bottom: 30px; }
+        #imageInput { display: block; margin: 0 auto 20px; padding: 10px; border: 2px dashed #3498db; border-radius: 10px; width: 100%; max-width: 400px; }
+        .slider-container { text-align: center; }
+        #compressionLevel { width: 100%; max-width: 400px; margin: 10px 0; accent-color: #3498db; }
+        .preview-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .image-container { text-align: center; }
-        .image-container h3 { margin-bottom: 10px; color: #2c3e50; }
-        .image-container img { max-width: 100%; height: auto; border-radius: 8px; display: none; border: 1px solid #eee; }
-        .ad-section { margin: 30px 0; text-align: center; min-height: 90px; background: #f8f9fa; border-radius: 8px; padding: 10px; }
-        #downloadBtn { display: none; width: 220px; margin: 20px auto; padding: 12px; background: #2ecc71; color: white; border: none; border-radius: 25px; cursor: pointer; font-size: 16px; transition: background 0.3s; }
-        #downloadBtn:hover { background: #27ae60; }
+        .image-container h3 { font-size: 20px; margin-bottom: 15px; color: #2c3e50; }
+        .image-container img { max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); display: none; }
+        #downloadBtn { display: none; width: 100%; max-width: 300px; margin: 30px auto; padding: 15px; background: #2ecc71; color: white; border: none; border-radius: 30px; font-size: 18px; cursor: pointer; transition: all 0.3s; }
+        #downloadBtn:hover { background: #27ae60; transform: scale(1.05); }
+        .ad-section { margin: 40px 0; text-align: center; }
+        footer { background: #2c3e50; color: white; text-align: center; padding: 20px 0; }
         @media (max-width: 768px) {
-            .header-content { flex-direction: column; gap: 15px; }
-            nav { flex-wrap: wrap; justify-content: center; }
-            .tool-wrapper { padding: 20px; }
+            .header-content { flex-direction: column; gap: 20px; }
+            nav { flex-wrap: wrap; justify-content: center; gap: 10px; }
+            .tool-section { padding: 20px; }
+            .tool-section h2 { font-size: 24px; }
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <div class="container header-content">
             <div class="logo">
-                <a href="https://fitpros.github.io/image-copressor/">
-                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEwIDEwSDMwVjMwSDEwVjEwWiIgZmlsbD0iIzM0OThEQiIvPgo8cGF0aCBkPSJNMTUgMTVIMjVWMjVIMTVWMTVaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMTcgMTdIMjNWMjNIMTdWMTdaIiBmaWxsPSIjMkMzRTUwIi8+Cjwvc3ZnPgo=" alt="Image Compression Logo">
-                </a>
-                <a href="https://fitpros.github.io/image-copressor/"><h1>Image Compressor</h1></a>
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEwIDEwSDMwVjMwSDEwVjEwWiIgZmlsbD0iIzM0OThEQiIvPgo8cGF0aCBkPSJNMTUgMTVIMjVWMjVIMTVWMTVaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMTcgMTdIMjNWMjNIMTdWMTdaIiBmaWxsPSIjMkMzRTUwIi8+Cjwvc3ZnPgo=" alt="Image Compressor Logo">
+                <h1>Image Compressor</h1>
             </div>
             <nav>
-                <a href="https://fitpros.github.io/image-copressor/" class="nav-btn">Home</a>
-                <a href="https://fitpros.github.io/image-copressor/image-compressor.html" class="nav-btn">Compressor Tool</a>
-                <a href="https://fitpros.github.io/image-copressor/about.html" class="nav-btn">About</a>
-                <a href="https://fitpros.github.io/image-copressor/contact.html" class="nav-btn">Contact</a>
+                <a href="https://fitpros.github.io/image-copressor/" class="nav-link">Home</a>
+                <a href="https://fitpros.github.io/image-copressor/image-compressor.html" class="nav-link">Compressor Tool</a>
+                <a href="https://fitpros.github.io/image-copressor/about.html" class="nav-link">About</a>
+                <a href="https://fitpros.github.io/image-copressor/contact.html" class="nav-link">Contact</a>
             </nav>
         </div>
     </header>
@@ -72,11 +74,14 @@
             </script>
         </div>
 
-        <div class="tool-wrapper">
-            <div class="input-section">
+        <section class="tool-section">
+            <h2>Compress Your Images</h2>
+            <div class="input-area">
                 <input type="file" id="imageInput" accept="image/*">
-                <label for="compressionLevel">Compression Level: <span id="compressionValue">50</span>%</label>
-                <input type="range" id="compressionLevel" min="0" max="100" value="50">
+                <div class="slider-container">
+                    <label for="compressionLevel">Compression Level: <span id="compressionValue">50</span>%</label>
+                    <input type="range" id="compressionLevel" min="0" max="100" value="50">
+                </div>
             </div>
             <div class="preview-section">
                 <div class="image-container">
@@ -89,7 +94,7 @@
                 </div>
             </div>
             <button id="downloadBtn">Download Compressed Image</button>
-        </div>
+        </section>
 
         <div class="ad-section">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5721788035694701" crossorigin="anonymous"></script>
@@ -104,6 +109,10 @@
             </script>
         </div>
     </div>
+
+    <footer>
+        <p>&copy; 2025 Image Compressor by Fitpros. All rights reserved.</p>
+    </footer>
 
     <script>
         const imageInput = document.getElementById('imageInput');
