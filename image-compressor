@@ -45,7 +45,7 @@
             margin-bottom: 20px;
         }
 
-        .compression-slider {
+        #compressionLevel {
             width: 100%;
             margin: 15px 0;
         }
@@ -60,34 +60,35 @@
         .image-container {
             flex: 1;
             min-width: 300px;
+            text-align: center;
         }
 
         .image-container img {
             max-width: 100%;
             height: auto;
             border-radius: 4px;
+            display: none;
         }
 
         .ad-section {
             margin: 20px 0;
             text-align: center;
+            min-height: 90px;
         }
 
-        .download-btn {
-            display: block;
+        #downloadBtn {
+            display: none;
             width: 200px;
             margin: 20px auto;
             padding: 10px;
             background: #007bff;
             color: white;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 4px;
             border: none;
+            border-radius: 4px;
             cursor: pointer;
         }
 
-        .download-btn:hover {
+        #downloadBtn:hover {
             background: #0056b3;
         }
 
@@ -107,7 +108,7 @@
 
         <!-- Top Ad Section -->
         <div class="ad-section">
-            <!-- Replace 'YOUR_ADSENSE_AD_UNIT_ID' with your actual AdSense Ad Unit ID -->
+            <!-- Replace with your actual AdSense credentials -->
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=YOUR_ADSENSE_AD_UNIT_ID"
                     crossorigin="anonymous"></script>
             <ins class="adsbygoogle"
@@ -125,7 +126,7 @@
             <div class="input-section">
                 <input type="file" id="imageInput" accept="image/*">
                 <label for="compressionLevel">Compression Level: <span id="compressionValue">50</span>%</label>
-                <input type="range" id="compressionLevel" min="0" max="100" value="50" class="compression-slider">
+                <input type="range" id="compressionLevel" min="0" max="100" value="50">
             </div>
 
             <div class="preview-section">
@@ -139,12 +140,12 @@
                 </div>
             </div>
 
-            <button class="download-btn" id="downloadBtn" style="display: none;">Download Compressed Image</button>
+            <button id="downloadBtn">Download Compressed Image</button>
         </div>
 
         <!-- Bottom Ad Section -->
         <div class="ad-section">
-            <!-- Replace 'YOUR_ADSENSE_AD_UNIT_ID' with your actual AdSense Ad Unit ID -->
+            <!-- Replace with your actual AdSense credentials -->
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=YOUR_ADSENSE_AD_UNIT_ID"
                     crossorigin="anonymous"></script>
             <ins class="adsbygoogle"
@@ -168,32 +169,30 @@
         const downloadBtn = document.getElementById('downloadBtn');
         let compressedImageData = null;
 
-        // Update compression value display
-        compressionLevel.addEventListener('input', () => {
+        // Update compression value display and recompress
+        compressionLevel.oninput = () => {
             compressionValue.textContent = compressionLevel.value;
             if (imageInput.files[0]) {
-                compressImage();
+                compressImage(imageInput.files[0]);
             }
-        });
+        };
 
         // Handle image upload
-        imageInput.addEventListener('change', () => {
+        imageInput.onchange = () => {
             const file = imageInput.files[0];
             if (file) {
                 const reader = new FileReader();
                 reader.onload = (e) => {
                     originalPreview.src = e.target.result;
-                    compressImage();
+                    originalPreview.style.display = 'block';
+                    compressImage(file);
                 };
                 reader.readAsDataURL(file);
             }
-        });
+        };
 
         // Compress image function
-        function compressImage() {
-            const file = imageInput.files[0];
-            if (!file) return;
-
+        function compressImage(file) {
             const img = new Image();
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
@@ -206,20 +205,21 @@
                 const quality = (100 - compressionLevel.value) / 100;
                 compressedImageData = canvas.toDataURL('image/jpeg', quality);
                 compressedPreview.src = compressedImageData;
+                compressedPreview.style.display = 'block';
                 downloadBtn.style.display = 'block';
             };
-            img.src = originalPreview.src;
+            img.src = URL.createObjectURL(file);
         }
 
         // Download compressed image
-        downloadBtn.addEventListener('click', () => {
+        downloadBtn.onclick = () => {
             if (compressedImageData) {
                 const link = document.createElement('a');
                 link.download = 'compressed_image.jpg';
                 link.href = compressedImageData;
                 link.click();
             }
-        });
+        };
     </script>
 </body>
 </html>
